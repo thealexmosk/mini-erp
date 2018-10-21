@@ -1,8 +1,8 @@
-# mini-erp
+# Mini ERP system
 Installation:
-1. composer update
-2. Set up yout .env file
-3. php artisan migrate --seed
+1. ```composer update```
+2. Set up your ```.env``` file
+3. ```php artisan migrate --seed```
 
 Test admin:
 - Login: admin
