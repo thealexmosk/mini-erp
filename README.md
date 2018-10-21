@@ -1,5 +1,5 @@
 # mini-erp
-Instalation:
+Installation:
 1. composer update
 2. Set up yout .env file
 3. php artisan migrate --seed
