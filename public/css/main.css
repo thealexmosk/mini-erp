@@ -1,0 +1,49 @@
+body, html {
+    height: 100%;
+}
+.nostretch {
+  width: 1%;
+  white-space: nowrap;
+}
+tr.tr-align-middle td,
+tr.tr-align-middle th{
+  vertical-align: middle;
+}
+.scrollmenu {
+  overflow: auto;
+  white-space: nowrap;
+}
+.button-selector {
+
+}
+
+.avatar {
+  -o-object-position: 50% 50%;
+     object-position: 50% 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.nav__avatar {
+    height: 25px;
+    width: 25px;
+    margin-right: 5px;
+}
+.user__avatar {
+  border-radius: 50%;
+}
+.profile__avatar {
+  height: 150px;
+  width: 150px;
+}
+.profile__name {
+  font-size: 28px;
+  font-weight: 800;
+}
+.avatar-edit {
+  height: 100px;
+  width: 100px;
+  margin: 10px 10px 0 0;
+}
+.show__actions {
+  float: right
+}
