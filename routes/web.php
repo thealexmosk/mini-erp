@@ -19,9 +19,6 @@ Auth::routes();
 
 Route::group(['middleware' => 'auth'], function() {
   Route::get('/home', 'HomeController@index')->name('home');
-  // Route::get('/profile', 'ProfileController@index')->name('profile');
-  // Route::get('/profile/edit', 'ProfileController@edit')->name('profile.edit');
-  // Route::put('/profile/update', 'ProfileController@update')->name('profile.update');
   Route::get('projects/my_projects', 'ProjectController@index')->name('projects.my');
   Route::get('projects/downloadPDF/{id}', 'ProjectController@downloadPDF')->name('projects.downloadPDF');
   Route::get('projects/export_projects', 'ProjectController@exportProjects')->name('projects.exportProjects');

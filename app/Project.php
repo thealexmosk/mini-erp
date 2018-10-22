@@ -39,4 +39,9 @@ class Project extends Model
       {
           return $this->belongsToMany('App\Skill', 'projects_skills');
       }
+
+      public function hasSkills()
+      {
+        return !$this->skills->isEmpty();
+      }
 }

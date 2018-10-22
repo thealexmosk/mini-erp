@@ -40,7 +40,7 @@ class SkillController extends Controller
      */
     public function store(Request $request)
     {
-        Skill::createFromInput($request->name);
+        Skill::addBySkillName($request->name);
 
         return redirect('skills')->with('status', 'Successfuly created!');
     }

@@ -9,7 +9,7 @@ class Skill extends Model
 {
   public $timestamps = false;
 
-  public static function createFromInput($skill_name) {
+  public static function addBySkillName($skill_name) {
       $user_id = Auth::id();
       $skill_name = strtolower($skill_name);
       $skill = Skill::where('name', 'LIKE', $skill_name);

@@ -1,5 +1,4 @@
 @extends('layouts.user')
-
 @section('content')
   <div class="justify-content-center">
     <div class="card">
@@ -42,7 +41,7 @@
               <tr>
                 <th scope="row">Skills</th>
                 <td>
-                  @foreach ($project->skills()->get() as $skill)
+                  @foreach ($project->skills as $skill)
                     <button class="btn btn-outline-success" type="button">{{ $skill->name }}</button>
                   @endforeach
                 </td>

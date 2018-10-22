@@ -187,9 +187,11 @@ class ProjectController extends Controller
         $data = $request->except('_token');
         $data['user_id'] = Auth::id();
 
-        if ($data['skills']) {
-          $project->skills()->sync($data['skills']);
-          $user->skills()->sync($data['skills']);
+        $project->skills()->detach();
+
+        if ($data['skills'] && $data['skills'][0] != '0') {
+          $project->skills()->attach($data['skills']);
+          $user->skills()->syncWithoutDetaching($data['skills']);
         }
 
         $project->fill($data)->save();
@@ -206,6 +208,7 @@ class ProjectController extends Controller
     public function destroy(Project $project)
     {
         $project->skills()->detach();
+        $project->users()->detach();
         $project->delete();
 
         return redirect('projects')->with('status', 'Successfuly deleted!');

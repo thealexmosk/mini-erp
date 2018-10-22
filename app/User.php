@@ -2,13 +2,13 @@
 
 namespace App;
 
+use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use HasApiTokens, Notifiable;
 
     const ADMIN_TYPE = 'admin';
     const DEFAULT_TYPE = 'user';
@@ -46,7 +46,7 @@ class User extends Authenticatable
           return [$skill->id => $skill->name];
         })->toArray();
 
-        $avail_skills[] = '---';
+        $avail_skills['0'] = '---';
 
         return $avail_skills;
     }

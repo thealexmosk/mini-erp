@@ -46,7 +46,7 @@ class ProjectsImport implements ToModel, WithHeadingRow
         $skill_names = explode(',', $row['skills_csv']);
 
         foreach ($skill_names as $skill_name) {
-          $skill = \App\Skill::createFromInput($skill_name);
+          $skill = \App\Skill::addBySkillName($skill_name);
           if (! $skill->projects->contains($project->id)) {
               $skill->projects()->attach($project->id);
           }
