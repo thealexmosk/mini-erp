@@ -3,7 +3,7 @@
 @section('main')
   <div class="container-fluid h-100">
     <div class="row h-100">
-      <aside class="col-2 col-sm-3 p-0 navbar-dark bg-dark" >
+      <aside class="col-1 col-sm-3 col-md-2 p-0 navbar-dark bg-dark" >
           <nav class="navbar navbar-expand navbar-light flex-md-column flex-row align-items-start py-2">
               <div class="collapse navbar-collapse">
                   <ul class="flex-column flex-row navbar-nav w-100 justify-content-between">
@@ -31,7 +31,7 @@
               </div>
           </nav>
       </aside>
-      <main class="col-10 col-sm-9 py-4">
+      <main class="col-11 col-sm-9 col-md-10 py-4">
         @yield('content')
       </main>
     </div>
