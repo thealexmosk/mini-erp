@@ -17,6 +17,8 @@ class CreateUsersSkillsTable extends Migration
           $table->unsignedInteger('user_id');
           $table->unsignedInteger('skill_id');
 
+          $table->primary(['user_id', 'skill_id']);
+
           $table->foreign('user_id')->references('id')->on('users');
           $table->foreign('skill_id')->references('id')->on('skills');
         });

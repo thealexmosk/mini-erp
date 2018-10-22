@@ -11,7 +11,7 @@
           </div>
         @endif
         <div class="projects__filters mb-3">
-          {!! Form::open(['route' => 'projects.index', 'method' => 'get']) !!}
+          {!! Form::open(['route' => $route_name, 'method' => 'get']) !!}
           <div class="container">
             <div class="row">
               <div class="col-12 col-md-2 mb-1">
@@ -24,7 +24,7 @@
                 {{ Form::text('organization', $filters['organization'], ['class' => 'form-control', 'placeholder' => 'Organization']) }}
               </div>
               <div class="col-6 col-md-2 mb-1">
-                {{ Form::select('type', $project_types, $filters['type'] || 0, ['class' => 'form-control']) }}
+                {{ Form::select('type', $project_types, $filters['type'], ['class' => 'form-control']) }}
               </div>
               <div class="col-6 col-md-2 mb-1">
                 {{ Form::submit('Search', ['class' => 'btn btn-outline-primary w-100']) }}
@@ -58,7 +58,7 @@
                 <td>{{ $project->role }}</td>
                 <td>
                   <a href="{{ route("projects.show", $project->id) }}" class="btn btn-outline-primary" role="button">Show</a>
-                  @can('projects.edit', $project)
+                  @can('projects.update', $project)
                     <a href="{{ route("projects.edit", $project->id) }}" class="btn btn-outline-warning" role="button">Edit</a>
                     {!! Form::open(['route' => ["projects.destroy", $project], 'method' => 'DELETE', 'class' => 'd-inline-block']) !!}
     	              {{ Form::submit('Remove', ['class' => 'btn btn-outline-danger', 'onClick' => 'return confirm("Are you sure?")']) }}
@@ -78,7 +78,7 @@
           <hr>
           <div class="row">
             <div class="col-8">
-              {!! Form::open(['route' => ["projects.importProjects"], 'files' => true, 'class' => 'd-inline-block']) !!}
+              {!! Form::open(['route' => ["projects.importProjects", $export_user_id], 'files' => true, 'class' => 'd-inline-block']) !!}
               {{ Form::label('project_file', 'Import Projects (Excel)') }}
               {{ Form::file('project_file', [
                 'class' => 'form-control d-inline-block',

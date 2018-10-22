@@ -24,8 +24,8 @@ class ProjectsImport implements ToModel, WithHeadingRow
           return null;
         }
 
-        $start_date = \Carbon\Carbon::parse($row['start_mmddyyyy']);
-        $end_date = \Carbon\Carbon::parse($row['end_mmddyyyy']);
+        $start_date = \Carbon\Carbon::parse($row['start_date']);
+        $end_date = \Carbon\Carbon::parse($row['end_date']);
 
         $user_id = Auth::id();
 
@@ -47,7 +47,9 @@ class ProjectsImport implements ToModel, WithHeadingRow
 
         foreach ($skill_names as $skill_name) {
           $skill = \App\Skill::createFromInput($skill_name);
-          $skill->projects()->attach($project->id);
+          if (! $skill->projects->contains($project->id)) {
+              $skill->projects()->attach($project->id);
+          }
           $skill->save();
         }
 

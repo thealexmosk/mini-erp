@@ -22,7 +22,9 @@ class Skill extends Model
         $skill = $skill->first();
       }
 
-      $skill->users()->attach($user_id);
+      if (! $skill->users->contains($user_id)) {
+          $skill->users()->attach($user_id);
+      }
       $skill->save();
 
       return $skill;

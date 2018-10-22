@@ -9,6 +9,7 @@ use App\Imports\ProjectsImport;
 use App\Exports\ProjectsExport;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
 class ProjectController extends Controller
@@ -20,11 +21,20 @@ class ProjectController extends Controller
      */
     public function index(Request $request)
     {
-        $projects = Project::query();
+        $route_name = Route::currentRouteName();
+        $export_user_id = null;
+
+        if ($route_name === 'projects.my') {
+          $export_user_id = Auth::id();
+          $projects = Project::where('user_id', '=', $export_user_id);
+        } else {
+          $projects = Project::query();
+        }
+
         $filters = [
           'title' => '',
           'organization' => '',
-          'type' => ''
+          'type' => '0'
         ];
 
         if ($request->has('title')) {
@@ -37,7 +47,7 @@ class ProjectController extends Controller
           $projects = $projects->where('title', 'LIKE', "%{$request->organization}%");
         }
 
-        if ($request->has('type') && $request->type != 0) {
+        if ($request->has('type') && $request->type !== "0") {
           $filters['type'] = $request->type;
           $projects = $projects->where('type', '=', $request->type);
         }
@@ -47,7 +57,7 @@ class ProjectController extends Controller
 
         $projects = $projects->paginate(15);
 
-        return view('projects.index', compact('projects', 'project_types', 'filters'));
+        return view('projects.index', compact('projects', 'project_types', 'filters', 'route_name', 'export_user_id'));
     }
 
     /**
@@ -72,9 +82,9 @@ class ProjectController extends Controller
         return redirect('projects')->with('status', 'Successfuly created!');
     }
 
-    public function exportProjects()
+    public function exportProjects($user_id = null)
     {
-        return Excel::download(new ProjectsExport, 'projects.xlsx');
+        return Excel::download(new ProjectsExport($user_id), 'projects.xlsx');
     }
 
     public function downloadPDF($project_id)
@@ -122,7 +132,7 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        $this->authorize('projects.edit', $project);
+        $this->authorize('projects.update', $project);
 
         $user = Auth::user();
         $project_types = Project::PROJECT_TYPES;

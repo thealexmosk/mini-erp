@@ -62,7 +62,7 @@
             </tbody>
           </table>
           <div class="show__actions">
-            <a href="{{ route("projects.downloadPDF", $project->id) }}" class="btn btn-success" role="button">PDF</a>
+            <a href="{{ route("projects.downloadPDF", $project->id) }}" class="btn btn-success" role="button">Download PDF</a>
             @can('projects.edit', $project)
               <a href="{{ route("projects.edit", $project->id) }}" class="btn btn-warning" role="button">Edit</a>
               {!! Form::open(['route' => ["projects.destroy", $project->id], 'method' => 'DELETE', 'class' => 'd-inline-block']) !!}

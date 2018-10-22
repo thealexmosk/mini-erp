@@ -47,17 +47,4 @@ class ProjectPolicy
 
       return false;
     }
-
-    public function edit(User $user, Project $post)
-    {
-        if ($user->isAdmin()) {
-            return true;
-        }
-        if ($user->id === $project->user_id) {
-            return true;
-        }
-
-        return false;
-    }
-
 }

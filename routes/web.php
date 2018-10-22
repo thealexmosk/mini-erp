@@ -19,16 +19,14 @@ Auth::routes();
 
 Route::group(['middleware' => 'auth'], function() {
   Route::get('/home', 'HomeController@index')->name('home');
-  Route::get('/profile', 'ProfileController@index')->name('profile');
-  Route::get('/profile/edit', 'ProfileController@edit')->name('profile.edit');
-  Route::put('/profile/update', 'ProfileController@update')->name('profile.update');
+  // Route::get('/profile', 'ProfileController@index')->name('profile');
+  // Route::get('/profile/edit', 'ProfileController@edit')->name('profile.edit');
+  // Route::put('/profile/update', 'ProfileController@update')->name('profile.update');
+  Route::get('projects/my_projects', 'ProjectController@index')->name('projects.my');
   Route::get('projects/downloadPDF/{id}', 'ProjectController@downloadPDF')->name('projects.downloadPDF');
   Route::get('projects/export_projects', 'ProjectController@exportProjects')->name('projects.exportProjects');
   Route::post('projects/import_projects', 'ProjectController@importProjects')->name('projects.importProjects');
+  Route::resource('user', 'UserController');
   Route::resource('projects', 'ProjectController');
   Route::resource('skills', 'SkillController')->except(['edit', 'update', 'show']);
-});
-
-Route::group(['middleware' => 'is_admin'], function() {
-  Route::get('/users', 'UserController@index')->name('users');
 });

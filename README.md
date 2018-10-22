@@ -5,9 +5,9 @@ Installation:
 3. ```php artisan migrate --seed```
 
 Test admin:
-- Login: admin
-- Pass: 123456
+- Login: ```admin@admin.admin```
+- Pass: ```123456```
 
 Test user:
-- Login: user
-- Pass: 123456
+- Login: ```user@user.user```
+- Pass: ```123456```

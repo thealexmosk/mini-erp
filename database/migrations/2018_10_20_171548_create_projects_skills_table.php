@@ -17,6 +17,8 @@ class CreateProjectsSkillsTable extends Migration
             $table->unsignedInteger('skill_id');
             $table->unsignedInteger('project_id');
 
+            $table->primary(['project_id', 'skill_id']);
+
             $table->foreign('skill_id')->references('id')->on('skills');
             $table->foreign('project_id')->references('id')->on('projects');
           });
