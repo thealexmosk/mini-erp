@@ -60,6 +60,36 @@ class ProjectController extends Controller
         return view('projects.index', compact('projects', 'project_types', 'filters', 'route_name', 'export_user_id'));
     }
 
+    public function ajaxProjects(Request $request)
+    {
+      parse_str($request['data'], $data);
+
+      $export_user_id = null;
+
+      if ($data['route'] === 'projects.my') {
+        $export_user_id = Auth::id();
+        $projects = Project::where('user_id', '=', $export_user_id);
+      } else {
+        $projects = Project::query();
+      }
+
+      if ($data['title']) {
+        $projects = $projects->where('title', 'LIKE', "%{$data['title']}%");
+      }
+      if ($data['organization']) {
+        $projects = $projects->where('title', 'LIKE', "%{$data['organization']}%");
+      }
+
+      if ($data['type'] && $data['type'] !== "0") {
+        $projects = $projects->where('type', '=', $data['type']);
+      }
+
+      // $projects = $projects->paginate(2);
+      $projects = $projects->get();
+
+      return view('projects.ajax_projects', compact('projects'))->render();
+    }
+
     /**
      * Show the form for creating a new resource.
      *

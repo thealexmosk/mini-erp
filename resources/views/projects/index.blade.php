@@ -1,5 +1,12 @@
 @extends('layouts.user')
 
+@section('scripts')
+    <script
+    src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+@endsection
+
 @section('content')
   <div class="justify-content-center">
     <div class="card">
@@ -11,7 +18,7 @@
           </div>
         @endif
         <div class="projects__filters mb-3">
-          {!! Form::open(['route' => $route_name, 'method' => 'get']) !!}
+          {!! Form::open(['route' => $route_name, 'id' => 'filterForm']) !!}
           <div class="container">
             <div class="row">
               <div class="col-12 col-md-2 mb-1">
@@ -27,6 +34,7 @@
                 {{ Form::select('type', $project_types, $filters['type'], ['class' => 'form-control']) }}
               </div>
               <div class="col-6 col-md-2 mb-1">
+                {{ Form::hidden('route', $route_name) }}
                 {{ Form::submit('Search', ['class' => 'btn btn-outline-primary w-100']) }}
               </div>
             </div>
@@ -34,7 +42,7 @@
 
           {!! Form::close() !!}
         </div>
-        <div class="scrollmenu">
+        <div class="scrollmenu projects__table">
           <table class="table">
             <thead>
               <tr>
@@ -69,11 +77,14 @@
               @endforeach
             </tbody>
           </table>
-          <a href="{{ route("projects.exportProjects") }}" class="btn btn-outline-success float-right" role="button">Export to Excel</a>
-        </div>
-        <div class="container mt-2">
           <div class="pagination-nav mt-3">
             {{ $projects->links() }}
+          </div>
+        </div>
+
+        <div class="container mt-2">
+          <div class="row justify-content-end">
+            <a href="{{ route("projects.exportProjects") }}" class="btn btn-outline-success" role="button">Export to Excel</a>
           </div>
           <hr>
           <div class="row">
@@ -96,4 +107,26 @@
       </div>
     </div>
   </div>
+@endsection
+
+@section('custom_scripts')
+   <script>
+     $(function() {
+       $('#filterForm').submit(function( e ) {
+          e.preventDefault();
+          $.ajax({
+            url: "{{route('projects.ajaxProjects')}}",
+            type: 'post',
+            data: {data: $('#filterForm').serialize()},
+            headers: {
+              'X-CSRF-TOKEN': $('#filterForm input[name="_token"]').val()
+            },
+            success: function( data ) {
+              $('.projects__table').html(data);
+            }
+
+          });
+        });
+      });
+    </script>
 @endsection

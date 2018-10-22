@@ -16,9 +16,6 @@ tr.tr-align-middle th{
   overflow: auto;
   white-space: nowrap;
 }
-.button-selector {
-
-}
 
 .avatar {
   -o-object-position: 50% 50%;
@@ -49,4 +46,9 @@ tr.tr-align-middle th{
 }
 .show__actions {
   float: right
+}
+
+/* OVERRIDE LARAVEL CLASS*/
+.pagination {
+  justify-content: center;
 }

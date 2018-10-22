@@ -26,6 +26,7 @@ Route::group(['middleware' => 'auth'], function() {
   Route::get('projects/downloadPDF/{id}', 'ProjectController@downloadPDF')->name('projects.downloadPDF');
   Route::get('projects/export_projects', 'ProjectController@exportProjects')->name('projects.exportProjects');
   Route::post('projects/import_projects', 'ProjectController@importProjects')->name('projects.importProjects');
+  Route::post('projects/ajax_projects', 'ProjectController@ajaxProjects')->name('projects.ajaxProjects');
   Route::resource('user', 'UserController');
   Route::resource('projects', 'ProjectController');
   Route::resource('skills', 'SkillController')->except(['edit', 'update', 'show']);

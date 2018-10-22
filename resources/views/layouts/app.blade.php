@@ -11,6 +11,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    @yield('scripts')
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -83,5 +84,6 @@
             @yield('main')
         </div>
     </div>
+    @yield('custom_scripts')
 </body>
 </html>
