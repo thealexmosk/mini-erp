@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('main')
-  <div class="container-fluid h-100">
-    <div class="row h-100">
-      <aside class="col-1 col-sm-3 col-md-2 p-0 navbar-dark bg-dark" >
+  <div class="container-fluid">
+    <div class="row">
+      <aside class="col-1 col-sm-3 col-md-2 p-0 navbar-dark bg-dark">
           <nav class="navbar navbar-expand navbar-light flex-md-column flex-row align-items-start py-2">
               <div class="collapse navbar-collapse">
                   <ul class="flex-column flex-row navbar-nav w-100 justify-content-between">
