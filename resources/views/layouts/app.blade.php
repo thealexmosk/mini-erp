@@ -79,9 +79,9 @@
                 </div>
             </div>
         </nav>
-        <main class="h-100">
+        <div class="main-container">
             @yield('main')
-        </main>
+        </div>
     </div>
 </body>
 </html>
