@@ -11,3 +11,6 @@ Test admin:
 Test user:
 - Login: ```user@user.user```
 - Pass: ```123456```
+
+CRUD API for ```Project```:
+- Works without auth
