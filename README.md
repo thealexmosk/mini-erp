@@ -12,6 +12,9 @@ Test user:
 - Login: ```user@user.user```
 - Pass: ```123456```
 
+Test Excel sheet:
+- In the project derectory you may find a test excel sheet ```test.xlsx``` for import.
+
 RESTful API:
 
 The Passport service provider registers its own database migration directory. Make sure to ```php artisan migrate``` and ```php artisan passport:install```
