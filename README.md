@@ -1,7 +1,7 @@
 # Mini ERP system
 Installation:
 1. ```composer update```
-2. Set up your ```.env``` file
+2. Set up your ```.env``` file and ```php artisan key:generate```
 3. ```php artisan migrate --seed```
 
 Test admin:
