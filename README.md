@@ -25,4 +25,4 @@ After ```/api/login``` you receive the token for API operations (api:auth)
 #### CRUD for ```Project```:
 - Default routes (resource)
 ```/api/projects```
-!! Auth middleware is disabled !!
+*!! Auth middleware is disabled !!*
