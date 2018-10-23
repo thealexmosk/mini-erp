@@ -12,5 +12,14 @@ Test user:
 - Login: ```user@user.user```
 - Pass: ```123456```
 
-CRUD API for ```Project```:
-- Works without auth
+RESTful API:
+
+The Passport service provider registers its own database migration directory. Make sure to ```php artisan migrate``` and ```php artisan passport:install```
+
+1. Register and login:
+After ```/api/login``` you receive the token for API operations (api:auth)
+
+2. CRUD for ```Project```:
+- Default routes (resource)
+```/api/projects```
+!! Auth middleware is disabled !!
